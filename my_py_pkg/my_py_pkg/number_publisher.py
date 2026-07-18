@@ -16,6 +16,7 @@ class NumberPublisherNode(Node):
         msg = Int64()
         msg.data = self.number_
         self.number_publisher_.publish(msg)
+        
 
 
 def main(args=None):
