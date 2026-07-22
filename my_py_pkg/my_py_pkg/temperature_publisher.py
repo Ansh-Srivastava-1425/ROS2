@@ -10,7 +10,7 @@ class TemperaturNode(Node):
        self.count_ = 20
        self.tempreture_publisher_ = self.create_publisher(
        Float64, "tempreature", 10)
-       self.get_logger().info("Temperature Has Started")
+       self.get_logger().info("Temperature Has Started")    
        self.temperature_timer = self.create_timer(1.0, self.publish_temperature)
 
     def publish_temperature(self):

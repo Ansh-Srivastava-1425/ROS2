@@ -32,7 +32,8 @@ setup(
             "add_two_ints_server = my_py_pkg.add_two_ints_server:main",
             "add_two_ints_client = my_py_pkg.add_two_ints_client:main",
             "add_two_ints_clients = my_py_pkg.add_two_ints_clients:main",
-            "temperature_publisher = my_py_pkg.temperature_publisher:main"
+            "temperature_publisher = my_py_pkg.temperature_publisher:main",
+            "hw_status_publisher = my_py_pkg.hardware_status_publisher:main"
         ],
     },
 )
