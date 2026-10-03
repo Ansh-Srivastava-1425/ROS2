@@ -37,6 +37,7 @@ install(PROGRAMS
   scripts/pub.py
   scripts/sub.py
   scripts/draw_circle.py
+  scripts/pose_subscriber.py
   DESTINATION lib/${PROJECT_NAME}
 )
 ament_package()
