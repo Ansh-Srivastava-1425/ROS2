@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(my_package)
+project(temperature_pubsub)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -8,9 +8,7 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclpy REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(std_msgs REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -24,19 +22,9 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-
-
-
-# launch folder (folder ke liye DIRECTORY)
-install(DIRECTORY launch
-  DESTINATION share/${PROJECT_NAME}
-)
-
-# Python scripts (files ke liye PROGRAMS)
 install(PROGRAMS
-  scripts/pub.py
-  scripts/sub.py
-  scripts/draw_circle.py
+  scripts/temperature_publisher.py
   DESTINATION lib/${PROJECT_NAME}
 )
+
 ament_package()
