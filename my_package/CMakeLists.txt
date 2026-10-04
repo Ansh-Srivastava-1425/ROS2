@@ -22,6 +22,7 @@ install(PROGRAMS
   scripts/pose_subscriber.py
   scripts/add_two_ints_server.py
   scripts/add_two_ints_clients.py
+  scripts/move_turtle.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
