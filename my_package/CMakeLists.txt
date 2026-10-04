@@ -20,6 +20,7 @@ install(PROGRAMS
   scripts/sub.py
   scripts/draw_circle.py
   scripts/pose_subscriber.py
+  scripts/add_two_ints_server.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
