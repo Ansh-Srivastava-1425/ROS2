@@ -43,4 +43,11 @@ def generate_launch_description():
                        '-z', '0.2'],
             output='screen',
         ),
+
+         Node(
+            package='ros_gz_bridge',
+            executable='parameter_bridge',
+            arguments=['/cmd_vel@geometry_msgs/msg/Twist]gz.msgs.Twist'],
+            output='screen',
+        ),
     ])
