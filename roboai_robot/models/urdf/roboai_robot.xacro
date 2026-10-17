@@ -27,7 +27,7 @@
         <child link="wheel_left"/>
         <axis xyz="0 1 0"/>
     </joint>
-
+ 
     <joint name="lidar_joint" type="fixed">
         <origin xyz="0 0 0.17" rpy="0 0 0"/>
         <parent link="base_link"/>
