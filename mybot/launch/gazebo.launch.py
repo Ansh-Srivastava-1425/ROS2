@@ -14,6 +14,7 @@ def generate_launch_description():
     robot_description = ParameterValue(
         Command(['xacro ', urdf_path]), value_type=str
     )
+    world_path = os.path.join(pkg , 'worlds', 'obstacles.sdf')
 
     # Publishes the robot description (and TF) for the simulation
     robot_state_publisher = Node(
@@ -28,7 +29,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(os.path.join(
             get_package_share_directory('ros_gz_sim'),
             'launch', 'gz_sim.launch.py')),
-        launch_arguments={'gz_args': '-r empty.sdf'}.items(),
+        launch_arguments={'gz_args': f'-r {world_path}'}.items(),
     )
 
     # Takes the robot_description topic and spawns the robot in Gazebo
@@ -50,6 +51,7 @@ def generate_launch_description():
             '/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
             '/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model',
             '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+            '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
         ],
         output='screen',
     )
