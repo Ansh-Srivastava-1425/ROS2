@@ -134,6 +134,29 @@
         </inertial>
     </link>
 
+        <link name="caster_front">
+        <visual>
+            <geometry>
+                <sphere radius="${caster_radius}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <material name="black"></material>
+        </visual>
+
+        <collision>
+            <geometry>
+                <sphere radius="${caster_radius}"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="${caster_mass}"/>
+            <inertia ixx="${0.4 * caster_mass * caster_radius * caster_radius}" ixy="0" ixz="0"
+                     iyy="${0.4 * caster_mass * caster_radius * caster_radius}" iyz="0"
+                     izz="${0.4 * caster_mass * caster_radius * caster_radius}"/>
+        </inertial>
+    </link>
+
     <!-- JOINT -->
 
     <joint name="base_joint" type="fixed">
@@ -152,6 +175,12 @@
         <parent link="base_link"/>
         <child link="lidar_link"/>
         <origin xyz="0 0 0.085" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="caster_front_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="caster_front"/>
+        <origin xyz="0.05 0 ${caster_radius - wheel_radius}" rpy="0 0 0"/>
     </joint>
 
 
@@ -205,6 +234,11 @@
                 </range>
             </lidar>
         </sensor>
+    </gazebo>
+
+    <gazebo reference="caster_front">
+        <mu1>0.001</mu1>
+        <mu2>0.001</mu2>
     </gazebo>
 
 </robot>
