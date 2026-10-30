@@ -29,4 +29,14 @@ def generate_launch_description():
         output='screen',
     )
 
+        # 4. SLAM: builds the map from /scan and /odom
+    slam_config = os.path.join(pkg, '???', 'slam.yaml')
+    slam = Node(
+        package='slam_toolbox',
+        executable='???',
+        name='slam_toolbox',
+        parameters=[slam_config],
+        output='screen',
+    )
+
     return LaunchDescription([simulation, rviz, avoider])
