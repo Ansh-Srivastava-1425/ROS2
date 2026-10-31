@@ -1,0 +1,25 @@
+ekf_filter_node:
+  ros__parameters:
+    use_sim_time: true
+    frequency: 30.0          # how many times per second the filter runs
+    two_d_mode: true         # our robot lives on a flat floor: ignore z, roll, pitch
+    publish_tf: true         # the EKF will now publish the odom -> base_footprint transform
+
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_footprint
+    world_frame: odom        # the EKF's output is expressed in the odom frame
+
+    odom0: /odom
+    odom0_config: [false, false, false,    # row 1: position, ignore
+                   false, false, false,    # row 2: angle, ignore
+                   true,  false, false,    # row 3: vx only
+                   false, false, true,     # row 4: vyaw only
+                   false, false, false]    # row 5: acceleration, ignore
+
+    imu0: /imu
+    imu0_config: [false, false, false,    # row 1: position, ignore
+                  false, false, false,    # row 2: angle, ignore
+                  false, false, false,    # row 3: speed, ignore (the IMU can't measure it)
+                  false, false, true,     # row 4: vyaw, the one number we trust
+                  false, false, false]    # row 5: acceleration, ignore

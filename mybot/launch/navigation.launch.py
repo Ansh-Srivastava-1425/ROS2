@@ -43,4 +43,12 @@ def generate_launch_description():
             'use_sim_time': 'true',
         }.items(),
     )
-    return LaunchDescription([simulation, rviz, slam, nav2])
+
+    ekf_config = os.path.join(pkg, 'config', 'ekf.yaml')
+    ekf = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node',
+        parameters=[ekf_config, {'use_sim_time': True}]
+    )
+    return LaunchDescription([simulation, rviz, slam, nav2 , ekf])
