@@ -29,14 +29,16 @@ def generate_launch_description():
         output='screen',
     )
 
-        # 4. SLAM: builds the map from /scan and /odom
-    slam_config = os.path.join(pkg, '???', 'slam.yaml')
-    slam = Node(
-        package='slam_toolbox',
-        executable='???',
-        name='slam_toolbox',
-        parameters=[slam_config],
-        output='screen',
+    # 4. SLAM: builds the map from /scan and /odom
+    slam_config = os.path.join(pkg, 'config', 'slam.yaml')
+    slam_launch = os.path.join(
+        get_package_share_directory('slam_toolbox'),
+        'launch', 'online_async_launch.py')
+    slam = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(slam_launch),
+        launch_arguments={
+            'slam_params_file': slam_config,
+            'use_sim_time': 'true',
+        }.items(),
     )
-
-    return LaunchDescription([simulation, rviz, avoider])
+    return LaunchDescription([simulation, rviz, avoider, slam])
